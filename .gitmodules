@@ -1,0 +1,12 @@
+[submodule "module/exwm"]
+	path = module/exwm
+	url = https://github.com/ch11ng/exwm.git
+[submodule "module/xelb"]
+	path = module/xelb
+	url = https://github.com/ch11ng/xelb.git
+[submodule "module/general"]
+	path = module/general
+	url = https://github.com/noctuid/general.el.git
+[submodule "module/use-package"]
+	path = module/use-package
+	url = https://github.com/jwiegley/use-package.git
