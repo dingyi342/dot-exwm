@@ -1,0 +1,94 @@
+* .dir-locals.el
+
+** directory-local variables
+http://endlessparentheses.com/a-quick-guide-to-directory-local-variables.html
+Can I configure X on a per-project basis?
+根据项目来单独配置。
+
+emacs内置 directory-local variables, dir-local
+dir-local变量 的值 将会应用到 给定文件夹内的所有文件
+将会递归应用到所有子文件夹。
+
+restrict them by major-mode or by subdirectory.
+限制，在子目录也使用 dir-local变量。
+
+M-x add-dir-local-variable
+-> major-mode
+-> variable name
+-> vairable value
+==> .dir-locals.el 写入
+保存。
+
+会在当前目录创建 .dir-local.el文件，并写入 add-dir-local-variable提示的内容。
+
+projectile-edit-dir-locals 总会在项目的根目录生成 .dir-local.el.
+
+如果 major-mode 设置为nil, 将会应用到所有 major-modes.
+
+变量的名字，应该所有包的变量都可以设置为一个 dir-local variables.
+
+变量的值, 输入 eval <RET>， 会提示你输入一个lisp expression, 而不是一个值。
+每当访问该目录下的文件的时候，这个表达式就会eval一次。
+
+revert-buffer 对已经打开的文件，使dir-local里的变量的新的值生效。
+
+好处
+
+set emacs variables on a project-global level.
+
+
+https://joelmccracken.github.io/entries/project-local-variables-in-projectile-with-dirlocals/
+
+#+BEGIN_SRC emacs-lisp
+  ((nil . ((eval . (defun my-project-function ()
+                     ;; your code here.
+                     )))))
+#+END_SRC
+
+
+** projectile 与 dir-local variable
+不同项目之间，即使是相同的语言(意味着相同的major-mode)，有些设置也是不同的。
+比如 coding styles(缩进), 自动补全的sources.
+就是不想用全局的配置，想根据项目来配置一些emacs变量。
+
+set some variables according to the selected project.
+
+dir-locals-file变量指定了这个文件的名字 .dir-locals.el
+
+https://projectile.readthedocs.io/en/latest/projects/#storing-project-settings
+
+可以直接编辑文件
+
+** .dir-locals.el file                                               :config:
+#+BEGIN_SRC emacs-lisp :tangle ~/.exwm.d/.dir-locals.el
+  ;; Directory Local Variables
+
+  ((emacs-lisp-mode
+    (indent-tabs-mode . nil)))
+#+END_SRC
+
+* package.el                                                   :package manager:
+  
+* evil 不再使用
+
+** org-mode use tab
+   #+BEGIN_SRC emacs-lisp
+     (setq evil-want-C-i-jump nil)           ;ls
+   #+END_SRC
+   
+* use-package
+不再使用
+* exwm
+
+* reference
+1. use-package作者的配置 https://github.com/jwiegley/dot-emacs
+2. purcell的配置 https://github.com/purcell/emacs.d
+3. 
+
+* .exwm.d配置理念
+该配置不是为编辑服务，只为 exwm 服务。
+所以只对编辑有用的配置都应该移除。
+
+* 快速启动，应该无限接近零配置emacs的启动速度。
+
+

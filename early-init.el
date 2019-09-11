@@ -18,3 +18,4 @@
 
 ;; One less file to load at startup
 (setq site-run-file nil)
+
